@@ -112,7 +112,7 @@
     <script>
       // numbers are stored encoded so bots scraping the page can't read them; they appear only after a click
       document.getElementById('showPhones').addEventListener('click', function () {
-        var d = (s) => atob(s).split('').reverse().join('');
+        var d = (s) => new TextDecoder().decode(Uint8Array.from(atob(s), (c) => c.charCodeAt(0))).split('').reverse().join('');
         var box = document.getElementById('phones');
         [['Mjc1Ny01NjMgKTYyNiggMSsgwrcgU1U=','Mjc1NzU2MzYyNjEr'],['MzAxMSA4NzAxIDU4MSA2OCsgwrcgTkM=','MzAxMTg3MDE1ODE2OCs=']].reverse().forEach(function (p) {
           var a = document.createElement('a'); a.href = 'tel:' + d(p[1]); a.textContent = d(p[0]);
